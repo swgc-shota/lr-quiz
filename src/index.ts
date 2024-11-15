@@ -7,10 +7,11 @@ import './index.css';
 
 const { main } = van.tags;
 const appTitle = import.meta.env.VITE_TITLE;
+const appSlug = import.meta.env.VITE_SLUG;
 
 van.add(
   document.body,
-  Header(appTitle),
+  Header(appTitle, appSlug),
   main({ class: 'pt-10 dark:bg-stone-900' }, LRQuiz(), Instruction()),
   Footer(appTitle)
 );

@@ -1,5 +1,5 @@
-import fs from "fs";
-import { defineConfig, loadEnv } from "vite";
+import fs from 'fs';
+import { defineConfig, loadEnv } from 'vite';
 
 const gtmScriptInHead = (tagId) => `<!-- Google Tag Manager -->
 <script>
@@ -28,24 +28,26 @@ const gtmScriptInBody = (tagId) => `<!-- Google Tag Manager (noscript) -->
 <!-- End Google Tag Manager (noscript) -->`;
 
 export default defineConfig(({ command }) => {
-  const env = loadEnv("", process.cwd(), "");
+  const env = loadEnv('', process.cwd(), '');
 
-  const title = env.VITE_TITLE == null ? "No Title" : env.VITE_TITLE;
-  const desc = env.VITE_DESC == null ? "No Description" : env.VITE_DESC;
+  const title = env.VITE_TITLE == null ? 'No Title' : env.VITE_TITLE;
+  const slug = (env.VITE_SLUG = null ? 'no-slug' : env.VITE_SLUG);
+  const desc = env.VITE_DESC == null ? 'No Description' : env.VITE_DESC;
   const filename =
-    env.VITE_FILENAME == null ? "No Filename" : env.VITE_FILENAME;
+    env.VITE_FILENAME == null ? 'No Filename' : env.VITE_FILENAME;
   const published =
-    env.VITE_PUBLISHED == null ? "20XX-XX-XX" : env.VITE_PUBLISHED;
+    env.VITE_PUBLISHED == null ? '20XX-XX-XX' : env.VITE_PUBLISHED;
+
   const config = {
-    root: "src",
+    root: 'src',
     build: {
       outDir: `../dist/${filename}`,
       emptyOutDir: true,
     },
-    publicDir: "../public",
+    publicDir: '../public',
     plugins: [
       {
-        name: "html-transform",
+        name: 'html-transform',
         transformIndexHtml(html) {
           return html
             .replace(/%APP_TITLE%/g, title)
@@ -56,18 +58,19 @@ export default defineConfig(({ command }) => {
       },
     ],
     define: {
-      "import.meta.env.VITE_TITLE": JSON.stringify(title),
+      'import.meta.env.VITE_TITLE': JSON.stringify(title),
+      'import.meta.env.VITE_SLUG': JSON.stringify(slug),
     },
   };
 
-  if (command === "build") {
+  if (command === 'build') {
     if (env.VITE_BASE_PATH !== undefined) {
       config.base = env.VITE_BASE_PATH;
     }
 
     if (env.VITE_GTM_ID !== undefined) {
       config.plugins.push({
-        name: "html-transform",
+        name: 'html-transform',
         transformIndexHtml(html) {
           return html
             .replace(/<head>/, `<head>${gtmScriptInHead(env.VITE_GTM_ID)}`)

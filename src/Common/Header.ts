@@ -36,13 +36,13 @@ const ToachLogo = () =>
     )
   );
 
-const ToGitHub = () =>
+const ToGitHub = (appSlug: string) =>
   div(
     { class: 'hidden sm:block sm:ml-4' },
     a(
       {
         target: '_blank',
-        href: 'https://github.com/swgc-shota',
+        href: 'https://github.com/swgc-shota/' + appSlug,
         rel: 'noreferrer noopener',
         'aria-label': 'Open on GitHub',
         class:
@@ -93,7 +93,7 @@ const ShareX = () =>
     )
   );
 
-const Header = (appTitle: string) => {
+const Header = (appTitle: string, appSlug: string) => {
   return header(
     {
       class: 'w-full',
@@ -118,9 +118,9 @@ const Header = (appTitle: string) => {
         ),
         div(
           { class: 'flex items-center justify-between pr-1 sm:pr-0' },
-          ThemeToggle,
-          ToGitHub,
-          ShareX
+          ThemeToggle(),
+          ToGitHub(appSlug),
+          ShareX()
         )
       )
     )
