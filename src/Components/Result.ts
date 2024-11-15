@@ -14,7 +14,9 @@ interface ResultProps {
 }
 
 const Result = ({ userAnswers, questWords }: ResultProps) => {
-  const correctCount = userAnswers.val.filter((bool) => bool).length;
+  const correctCount = userAnswers.val.filter(
+    (a, i) => a === questWords.val[i].correct
+  ).length;
   saveStats(userAnswers, questWords);
   return div(
     h2(),
