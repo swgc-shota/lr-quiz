@@ -1,5 +1,5 @@
 import van from 'vanjs-core';
-const { svg, path, g } = van.tags('http://www.w3.org/2000/svg');
+const { svg, path } = van.tags('http://www.w3.org/2000/svg');
 
 export const SpeechIcon = () =>
   svg(
