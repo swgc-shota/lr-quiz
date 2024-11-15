@@ -1,0 +1,76 @@
+.stat-container h2 {
+  margin-top: var(--space-xl);
+}
+.stat-tables-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: var(--space-md);
+  width: 100%;
+}
+.stat-table {
+  width: 100%;
+}
+.stat-table:nth-child(2) {
+  margin-top: var(--space-lg);
+}
+@media (min-width: 640px) {
+  .stat-table {
+    width: 48%;
+  }
+  .stat-table:nth-child(2) {
+    margin-top: 0;
+  }
+}
+
+.stat-table tr:nth-child(even) {
+  background-color: var(--stone-50);
+}
+.dark .stat-table tr:nth-child(even) {
+  background-color: var(--zinc-700);
+}
+.dark .stat-table tr:nth-child(odd) {
+  background-color: var(--zinc-800);
+}
+.stat-table tr:first-child {
+  background-color: var(--stone-100);
+}
+.stat-table th {
+  padding: var(--space-sm);
+  text-align: left;
+}
+.stat-table td {
+  padding: var(--space-sm);
+}
+
+.clear-storage-button {
+  color: var(--red-500);
+  font-size: var(--text-xs);
+  display: flex;
+  column-gap: var(--space-xs);
+  align-items: center;
+  margin-top: var(--space-sm);
+  margin-left: auto;
+  padding: var(--space-sm);
+}
+.clear-storage-button:hover {
+  color: var(--red-400);
+}
+.dark .clear-storage-button:hover {
+  color: var(--red-500);
+  opacity: 0.9;
+}
+.clear-storage-button > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: var(--stone-800);
+}
+.dark .clear-storage-button > svg {
+  fill: var(--stone-500);
+}
+.clear-storage-button:hover > svg {
+  fill: var(--stone-500);
+}
+.dark .clear-storage-button:hover > svg {
+  fill: var(--yellow-500);
+}

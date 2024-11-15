@@ -1,0 +1,16 @@
+@import './Components/styles/variables.css';
+@import './Components/styles/Question.css';
+@import './Components/styles/Result.css';
+@import './Components/styles/QuizStat.css';
+@import './Components/styles/Instruction.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+  padding: 16px;
+}
+.dark body {
+  color: var(--stone-300);
+}

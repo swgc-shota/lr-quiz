@@ -1,0 +1,43 @@
+@import './variables.css';
+
+.instruction {
+  background-color: var(--stone-50);
+  margin: auto;
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  width: 100%;
+  max-width: 960px;
+}
+.dark .instruction {
+  background-color: var(--zinc-800);
+}
+@media (min-width: 640px) {
+  .instruction {
+    padding: var(--space-xl);
+  }
+}
+.instruction h2 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.75rem;
+  margin-top: var(--space-lg);
+}
+.instruction h2:first-of-type {
+  margin-top: 0;
+}
+.instruction p {
+  margin-top: var(--space-md);
+}
+.instruction ol {
+  padding-left: var(--space-md);
+}
+.instruction a {
+  color: var(--blue-800);
+  text-decoration: underline;
+}
+.instruction a:hover {
+  text-decoration: none;
+}
+.dark .instruction a {
+  color: var(--blue-300);
+}

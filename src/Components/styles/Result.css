@@ -1,0 +1,71 @@
+.result-table {
+  width: 100%;
+}
+
+.result-table tr:nth-child(even) {
+  background-color: var(--stone-50);
+}
+.dark .result-table tr:nth-child(even) {
+  background-color: var(--zinc-700);
+}
+.dark .result-table tr:nth-child(odd) {
+  background-color: var(--zinc-800);
+}
+.result-table tr:first-child {
+  background-color: var(--stone-100);
+}
+.result-table tr th,
+.result-table tr td {
+  padding: var(--space-sm);
+}
+.result-table tr td:nth-child(2) {
+  display: flex;
+}
+.result-table tr td div {
+  width: 50%;
+}
+
+.speech-button {
+  display: flex;
+}
+.speech-button > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.speech-button:hover {
+  opacity: 0.9;
+}
+.speech-button:hover > svg {
+  fill: var(--yellow-500);
+}
+.correct {
+  color: var(--emerald-500);
+  font-weight: bold;
+}
+.wrong {
+  color: var(--red-500);
+  font-weight: bold;
+}
+
+.one-more-button {
+  color: #d6d3d1;
+  background-color: var(--stone-800);
+  border-radius: 4px;
+  display: block;
+  padding: var(--space-md);
+  margin: auto;
+  margin-top: var(--space-lg);
+  text-align: center;
+  width: 250px;
+}
+.dark .one-more-button {
+  background-color: var(--stone-700);
+  color: var(--stone-300);
+}
+.one-more-button:hover {
+  background-color: var(--stone-500);
+}
+.dark .one-more-button:hover {
+  color: var(--yellow-500);
+  background-color: var(--stone-800);
+}

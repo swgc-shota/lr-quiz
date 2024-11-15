@@ -1,0 +1,109 @@
+.quiz-container {
+  width: 100%;
+  margin: auto;
+  max-width: 700px;
+}
+.quiz-container h2 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.ripple-container {
+  position: relative;
+  width: 192px;
+  height: 192px;
+  margin: var(--space-xl) auto;
+}
+
+.circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--yellow-500);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.circle:focus-visible::before,
+.circle:focus-visible::after,
+.circle:hover::before,
+.circle:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid var(--yellow-500);
+  animation: ripple 2s linear infinite;
+}
+
+.circle:focus-visible::after,
+.circle:hover::after {
+  animation-delay: 1s;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.big-speech-button {
+  color: var(--stone-50);
+  width: 12rem;
+  height: 12rem;
+  justify-content: center;
+  align-items: center;
+}
+.big-speech-button:active,
+.big-speech-button:focus {
+  outline: var(--yellow-500);
+}
+.big-speech-button span {
+  font-size: 1.8rem;
+  display: block;
+  letter-spacing: 0.025rem;
+}
+
+.answer-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+.answer-button {
+  background-color: var(--stone-800);
+  color: var(--stone-50);
+  width: 150px;
+  padding: var(--space-md);
+  text-align: center;
+  border-radius: 4px;
+}
+.dark .answer-button {
+  background-color: var(--stone-700);
+  color: var(--stone-300);
+}
+.answer-button:hover {
+  background-color: var(--stone-500);
+}
+.dark .answer-button:hover {
+  color: var(--yellow-500);
+  background-color: var(--stone-800);
+}
+.answer-button:disabled {
+  background-color: var(--gray-300);
+}
+.dark .answer-button:disabled {
+  color: var(--stone-500);
+  background-color: var(--zinc-800);
+}

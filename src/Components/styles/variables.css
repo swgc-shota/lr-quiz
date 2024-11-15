@@ -1,0 +1,28 @@
+:root {
+  --emerald-500: #079669;
+  --red-500: #e11d48;
+  --red-400: #f87171;
+  --yellow-500: #eab308;
+  --stone-900: #1c1917;
+  --stone-500: #57534f;
+  --stone-700: #44403c;
+  --stone-800: #292524;
+  --stone-300: #d6d3d1;
+  --stone-100: #f5f5f4;
+  --stone-50: #fafaf9;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --gray-800: #1f2937;
+  --gray-300: #d1d5db;
+  --blue-300: #93c5fd;
+  --blue-800: #1e40af;
+  --text-xs: 0.75rem;
+  --text-md: 1rem;
+  --text-xl: 1.25rem;
+  --text-3xl: 1.875rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+}
