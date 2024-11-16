@@ -25,7 +25,7 @@ const getRecommendVoice = () => {
 
 export const speech = async (
   text: string,
-  requestedVoiceURI: string
+  selectedVoiceURI: string
 ): Promise<boolean> => {
   if (!('speechSynthesis' in window)) {
     alert(
@@ -40,8 +40,8 @@ export const speech = async (
     const utterance = new SpeechSynthesisUtterance(text);
 
     let voice = undefined;
-    if (requestedVoiceURI !== '') {
-      voice = getEnglishVoices().find((v) => v.voiceURI === requestedVoiceURI);
+    if (selectedVoiceURI !== '') {
+      voice = getEnglishVoices().find((v) => v.voiceURI === selectedVoiceURI);
     } else {
       voice = getRecommendVoice();
     }

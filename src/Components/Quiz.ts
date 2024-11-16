@@ -68,7 +68,11 @@ const LRQuiz = () => {
             questIndex,
             selectedVoiceURI,
           })
-        : Result({ userAnswers, questWords }),
+        : Result({
+            userAnswers,
+            questWords,
+            selectedVoiceURI: selectedVoiceURI.val,
+          }),
     () => SelectVoice({ selectedVoiceURI: selectedVoiceURI.val })
   );
 };

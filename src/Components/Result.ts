@@ -11,9 +11,10 @@ const { div, h2, button, table, tr, th, td, span } = van.tags;
 interface ResultProps {
   userAnswers: State<LeftRightChoice[]>;
   questWords: State<questWordsWithAnswer[]>;
+  selectedVoiceURI: string;
 }
 
-const Result = ({ userAnswers, questWords }: ResultProps) => {
+const Result = ({ userAnswers, questWords, selectedVoiceURI }: ResultProps) => {
   const correctCount = userAnswers.val.filter(
     (a, i) => a === questWords.val[i].correct
   ).length;
@@ -28,7 +29,7 @@ const Result = ({ userAnswers, questWords }: ResultProps) => {
           `正答数 : ${correctCount} / ${questWords.val.length}`
         )
       ),
-      ResultRows({ userAnswers, questWords })
+      ResultRows({ userAnswers, questWords, selectedVoiceURI })
     ),
     button(
       {
@@ -37,16 +38,21 @@ const Result = ({ userAnswers, questWords }: ResultProps) => {
       },
       'One more set!'
     ),
-    QuizStats()
+    QuizStats({ selectedVoiceURI })
   );
 };
 
 interface ResultRowsProps {
   userAnswers: State<LeftRightChoice[]>;
   questWords: State<questWordsWithAnswer[]>;
+  selectedVoiceURI: string;
 }
 
-const ResultRows = ({ userAnswers, questWords }: ResultRowsProps) =>
+const ResultRows = ({
+  userAnswers,
+  questWords,
+  selectedVoiceURI,
+}: ResultRowsProps) =>
   questWords.val.map((q, i) => {
     const isUserCorrect = userAnswers.val[i] === q.correct;
     let leftStyles = '';
@@ -71,11 +77,19 @@ const ResultRows = ({ userAnswers, questWords }: ResultRowsProps) =>
       td(
         div(
           { class: `${leftStyles}` },
-          SpeechButton({ speechText: q.left, labelText: q.left })
+          SpeechButton({
+            speechText: q.left,
+            labelText: q.left,
+            selectedVoiceURI,
+          })
         ),
         div(
           { class: `${rightStyles}` },
-          SpeechButton({ speechText: q.right, labelText: q.right })
+          SpeechButton({
+            speechText: q.right,
+            labelText: q.right,
+            selectedVoiceURI,
+          })
         )
       )
     );
@@ -84,10 +98,18 @@ const ResultRows = ({ userAnswers, questWords }: ResultRowsProps) =>
 interface SpeechButtonProps {
   speechText: string;
   labelText: string;
+  selectedVoiceURI: string;
 }
-export const SpeechButton = ({ speechText, labelText }: SpeechButtonProps) => {
+export const SpeechButton = ({
+  speechText,
+  labelText,
+  selectedVoiceURI,
+}: SpeechButtonProps) => {
   return button(
-    { class: 'speech-button', onclick: () => speech(speechText) },
+    {
+      class: 'speech-button',
+      onclick: () => speech(speechText, selectedVoiceURI),
+    },
     SpeechIcon(),
     labelText
   );

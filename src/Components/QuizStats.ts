@@ -63,7 +63,10 @@ const loadStats = () => {
   );
 };
 
-const QuizStats = () => {
+interface QuizStatProps {
+  selectedVoiceURI: string;
+}
+const QuizStats = ({ selectedVoiceURI }: QuizStatProps) => {
   const stats = van.state(loadStats());
   const middleIndex = Math.floor(stats.val.length / 2);
   const firstHalf = stats.val.slice(0, middleIndex);
@@ -79,8 +82,8 @@ const QuizStats = () => {
     h2('これまでの統計'),
     div(
       { class: 'stat-tables-container' },
-      StatsTable(firstHalf),
-      StatsTable(secondHalf)
+      StatsTable({ stats: firstHalf, selectedVoiceURI }),
+      StatsTable({ stats: secondHalf, selectedVoiceURI })
     ),
     button(
       {
@@ -92,21 +95,34 @@ const QuizStats = () => {
     )
   );
 };
-const StatsTable = (stats: QuestionStat[]) =>
+
+interface StatsTableProps {
+  stats: QuestionStat[];
+  selectedVoiceURI: string;
+}
+
+const StatsTable = ({ stats, selectedVoiceURI }: StatsTableProps) =>
   table(
     { class: 'stat-table' },
     thead(tr(th('問題'), th('正解数'), th('正解率'))),
-    stats.map((s) => StatRow(s))
+    stats.map((stat) => StatRow({ stat, selectedVoiceURI }))
   );
 
-const StatRow = (stat: QuestionStat) => {
+interface StatRowProps {
+  stat: QuestionStat;
+  selectedVoiceURI: string;
+}
+
+const StatRow = ({ stat, selectedVoiceURI }: StatRowProps) => {
   const correctRate =
     stat.attempts > 0 ? Math.round((stat.correct / stat.attempts) * 100) : 0;
   return tr(
     td(
       stat.questionId
         .split('-')
-        .map((w) => SpeechButton({ speechText: w, labelText: w }))
+        .map((w) =>
+          SpeechButton({ speechText: w, labelText: w, selectedVoiceURI })
+        )
     ),
     td(`${stat.correct} / ${stat.attempts}`),
     td(`${correctRate}%`)
