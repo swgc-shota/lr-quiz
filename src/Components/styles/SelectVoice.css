@@ -15,6 +15,14 @@
   max-width: 500px;
   width: 100%;
 }
+.dark .select-voice {
+  background-color: var(--stone-700);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgb(214, 211, 209)'%3E%3Cpath d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+.dark .select-voice:hover {
+  color: var(--yellow-500);
+  background-color: var(--stone-800);
+}
 
 .select-voice:focus {
   outline: none;
