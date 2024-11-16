@@ -1,13 +1,31 @@
-export interface SpeechOptions {
-  lang?: string;
-  pitch?: number;
-  rate?: number;
-  volume?: number;
-}
+import { getEnglishVoices } from './SelectVoice';
+
+export const getRecommendVoiceURI = () => {
+  const voice = getRecommendVoice();
+  return voice === undefined ? '' : voice.voiceURI;
+};
+
+const getRecommendVoice = () => {
+  const englishVoices = getEnglishVoices();
+
+  englishVoices.find((v) =>
+    ['Andrew Online', 'Aaron', 'com.apple.eloquence.en-US.Eddy'].includes(
+      v.voiceURI
+    )
+  );
+
+  return getEnglishVoices()
+    .reverse()
+    .find((v) =>
+      ['Andrew Online', 'Aaron', 'com.apple.eloquence.en-US.Eddy'].some((r) =>
+        v.voiceURI.includes(r)
+      )
+    );
+};
 
 export const speech = async (
   text: string,
-  options: SpeechOptions = {}
+  requestedVoiceURI: string
 ): Promise<boolean> => {
   if (!('speechSynthesis' in window)) {
     alert(
@@ -21,10 +39,20 @@ export const speech = async (
 
     const utterance = new SpeechSynthesisUtterance(text);
 
-    utterance.lang = options.lang || 'en-US';
-    utterance.pitch = options.pitch || 1.0; // ピッチを設定（0.0～2.0）
-    utterance.rate = options.rate || 1.0; // 速度を設定（0.1～10.0）
-    utterance.volume = options.volume || 1.0; // 音量を設定（0.0～1.0）
+    let voice = undefined;
+    if (requestedVoiceURI !== '') {
+      voice = getEnglishVoices().find((v) => v.voiceURI === requestedVoiceURI);
+    } else {
+      voice = getRecommendVoice();
+    }
+
+    if (voice === undefined) {
+      voice = getEnglishVoices()[0];
+    }
+
+    if (voice !== undefined) {
+      utterance.voice = voice;
+    }
 
     const speakPromise = new Promise<boolean>((resolve) => {
       utterance.onend = () => resolve(true);
@@ -50,7 +78,7 @@ export const bounceIcon = (button: HTMLButtonElement) => {
   }, 500);
 };
 
-type CustomEvent = 'updatequestIndex' | 'resetQuestions';
+type CustomEvent = 'updatequestIndex' | 'resetQuestions' | 'changeVoiceURI';
 export function fireCustomEvent<T>(
   eventName: CustomEvent,
   detail?: T,

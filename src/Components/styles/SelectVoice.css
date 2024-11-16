@@ -1,0 +1,22 @@
+.select-voice {
+  display: block;
+  padding: 1rem;
+  padding-right: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin: auto;
+  margin-top: var(--space-xl);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333'%3E%3Cpath d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-color: #fff;
+  max-width: 500px;
+  width: 100%;
+}
+
+.select-voice:focus {
+  outline: none;
+  border-color: #666;
+}

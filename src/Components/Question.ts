@@ -8,9 +8,14 @@ const { div, button, h2, span } = van.tags;
 interface QuestionProps {
   questWords: State<questWordsWithAnswer[]>;
   questIndex: State<number>;
+  selectedVoiceURI: State<string>;
 }
 
-const Question = ({ questWords, questIndex }: QuestionProps) => {
+const Question = ({
+  questWords,
+  questIndex,
+  selectedVoiceURI,
+}: QuestionProps) => {
   const speeched = van.derive(
     () =>
       questIndex.val < questWords.val.length &&
@@ -21,7 +26,7 @@ const Question = ({ questWords, questIndex }: QuestionProps) => {
     h2(() => `Question ${questIndex.val + 1} / ${questWords.val.length}`),
     div(
       { class: 'ripple-container' },
-      BigSpeechButton({ questIndex, questWords })
+      BigSpeechButton({ questIndex, questWords, selectedVoiceURI })
     ),
     div(
       { class: 'answer-buttons' },
@@ -34,8 +39,13 @@ const Question = ({ questWords, questIndex }: QuestionProps) => {
 interface BigSpeechButtonProps {
   questWords: State<questWordsWithAnswer[]>;
   questIndex: State<number>;
+  selectedVoiceURI: State<string>;
 }
-const BigSpeechButton = ({ questIndex, questWords }: BigSpeechButtonProps) => {
+const BigSpeechButton = ({
+  questIndex,
+  questWords,
+  selectedVoiceURI,
+}: BigSpeechButtonProps) => {
   return button(
     {
       autofocus: true,
@@ -43,7 +53,7 @@ const BigSpeechButton = ({ questIndex, questWords }: BigSpeechButtonProps) => {
       onclick: async () => {
         const wordPair = questWords.val[questIndex.val];
         const word = wordPair.correct === 'L' ? wordPair.left : wordPair.right;
-        const speeched = await speech(word);
+        const speeched = await speech(word, selectedVoiceURI.val);
 
         if (wordPair.speeched) {
           return;

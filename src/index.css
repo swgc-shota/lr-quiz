@@ -3,6 +3,7 @@
 @import './Components/styles/Result.css';
 @import './Components/styles/QuizStat.css';
 @import './Components/styles/Instruction.css';
+@import './Components/styles/SelectVoice.css';
 
 @tailwind base;
 @tailwind components;
