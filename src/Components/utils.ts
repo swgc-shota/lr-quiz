@@ -1,8 +1,12 @@
 import { getEnglishVoices } from './SelectVoice';
 
-export const getRecommendVoiceURI = () => {
-  const voice = getRecommendVoice();
-  return voice === undefined ? '' : voice.voiceURI;
+export const getDefaultVoiceURI = () => {
+  const savedVoiceURI = localStorage.getItem('voiceURI');
+  if (savedVoiceURI === null) {
+    const voice = getRecommendVoice();
+    return voice === undefined ? '' : voice.voiceURI;
+  }
+  return savedVoiceURI;
 };
 
 const getRecommendVoice = () => {

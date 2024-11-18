@@ -10,7 +10,9 @@ const SelectVoice = ({ selectedVoiceURI }: SelectVoiceProps) => {
   const selectRef = select({
     class: 'select-voice',
     onchange: function () {
-      fireCustomEvent('changeVoiceURI', (this as HTMLSelectElement).value);
+      const newVoiceURI = (this as HTMLSelectElement).value;
+      localStorage.setItem('voiceURI', (this as HTMLSelectElement).value);
+      fireCustomEvent('changeVoiceURI', newVoiceURI);
     },
   });
 

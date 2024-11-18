@@ -4,7 +4,7 @@ import Result from './Result';
 import { WORD_PAIRS } from './words';
 import type { WordPair } from './words';
 import SelectVoice from './SelectVoice';
-import { getRecommendVoiceURI } from './utils';
+import { getDefaultVoiceURI } from './utils';
 export type LeftRightChoice = 'L' | 'R';
 
 export interface questWordsWithAnswer extends WordPair {
@@ -38,7 +38,7 @@ const LRQuiz = () => {
   const questWords = van.state<questWordsWithAnswer[]>(selectQuestionWords());
   const userAnswers = van.state<LeftRightChoice[]>([]);
   const questIndex = van.state(0);
-  const temp = getRecommendVoiceURI();
+  const temp = getDefaultVoiceURI();
   const selectedVoiceURI = van.state(temp === undefined ? '' : temp);
 
   document.addEventListener('updatequestIndex', (e: Event) => {

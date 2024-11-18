@@ -72,7 +72,7 @@ const QuizStats = ({ selectedVoiceURI }: QuizStatProps) => {
   const firstHalf = stats.val.slice(0, middleIndex);
   const secondHalf = stats.val.slice(middleIndex);
   const clearStorage = () => {
-    if (confirm('本当に成績データを削除しますか？')) {
+    if (confirm('本当にデータを削除しますか？')) {
       localStorage.clear();
       location.reload();
     }
@@ -91,7 +91,7 @@ const QuizStats = ({ selectedVoiceURI }: QuizStatProps) => {
         onclick: () => clearStorage(),
       },
       TrashIcon(),
-      '成績データを削除する'
+      'アプリのデータを削除する'
     )
   );
 };
