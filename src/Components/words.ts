@@ -61,7 +61,7 @@ export const WORD_PAIRS: WordPair[] = [
   { left: 'palm', right: 'perm' },
   { left: 'clutch', right: 'crutch' },
   { left: 'heel', right: 'hear' },
-  { left: 'cole', right: 'sore' },
+  { left: 'sole', right: 'sore' },
   { left: 'hail', right: 'hair' },
   { left: 'club', right: 'crab' },
   { left: 'stalk', right: 'stork' },
