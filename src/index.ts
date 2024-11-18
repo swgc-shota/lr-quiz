@@ -10,20 +10,21 @@ const appTitle = import.meta.env.VITE_TITLE;
 const appSlug = import.meta.env.VITE_SLUG;
 
 const voices = speechSynthesis.getVoices();
-if (voices.length === 0 && 'onvoiceschanged' in speechSynthesis) {
-  speechSynthesis.onvoiceschanged = () => {
-    van.add(
-      document.body,
-      Header(appTitle, appSlug),
-      main({ class: 'pt-10 dark:bg-stone-900' }, LRQuiz(), Instruction()),
-      Footer(appTitle)
-    );
-  };
-} else {
+const initApp = () => {
   van.add(
     document.body,
     Header(appTitle, appSlug),
     main({ class: 'pt-10 dark:bg-stone-900' }, LRQuiz(), Instruction()),
     Footer(appTitle)
   );
+
+  if ('onvoiceschanged' in speechSynthesis) {
+    speechSynthesis.removeEventListener('voiceschanged', initApp);
+  }
+};
+
+if (voices.length === 0 && 'onvoiceschanged' in speechSynthesis) {
+  speechSynthesis.addEventListener('voiceschanged', initApp);
+} else {
+  initApp();
 }
